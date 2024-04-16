@@ -62,7 +62,6 @@ function AdminLogin() {
     })
 }
 
-
 const loginForm = document.querySelector('.login')
 
 loginForm.addEventListener('submit', (e) => {
