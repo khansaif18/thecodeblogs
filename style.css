@@ -987,6 +987,7 @@ footer p b {
     margin-bottom: 2rem;
     padding: 2rem;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #00968762;
     backdrop-filter: blur(20px);
 }
 
@@ -1075,6 +1076,7 @@ textarea {
     height: 200px;
     width: 300px;
     overflow: hidden;
+    display: none;
     background-size: cover;
     background-position: center;
 }

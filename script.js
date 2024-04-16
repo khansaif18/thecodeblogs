@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 var imgElement = document.createElement('img');
                 imgElement.src = e.target.result;
                 var imagePreview = document.getElementById('imagePreview');
+                imagePreview.style.display = 'block'
                 imagePreview.innerHTML = '';
                 imagePreview.appendChild(imgElement);
             };
