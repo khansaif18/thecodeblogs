@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Type Animation CDN -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4ee16d8c51.js" crossorigin="anonymous"></script>
+    <!-- Fav Icon -->
+    <link rel="shortcut icon"
+        href="https://firebasestorage.googleapis.com/v0/b/basicblog-5b58c.appspot.com/o/blogImages%2F028bdff2e4e74d9c93e4b61ce673ffe2.png?alt=media&token=347a8a07-d246-4149-a39e-6c66bee90850"
+        type="image/x-icon">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Title -->
+    <title>The Code Blogs</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h2>TheCodeBlogs</h2>
+        </div>
+        <nav class="hideNav">
+            <a>
+                <li id="home">Home</li>
+            </a>
+            <a>
+                <li id="contact">Contact</li>
+            </a>
+
+            <i class="fa-solid fa-xmark" id="closeNav"></i>
+        </nav>
+        <i class="fa-solid fa-bars" id="burger"></i>
+    </header>
+
+    <div class="loader hideLoader" id="loader" style="position: absolute; top: 40%;"></div>
+
+
+    <div class="singleBlog" id="singleBlog">
+        <h1 id="title"></h1>
+
+        <div class="header"><img src="" alt=""></div>
+
+        <div class="desc">
+            <p id="author"></p>
+            <p id="date"></p>
+        </div>
+
+        <p class="singleContent" id="singleContent"></p>
+    </div>
+
+
+    <footer>
+        <hr>
+        <div class="footer">
+            <p>Made with ❤️ by <b>Saif</b></p>
+            <div class="socials">
+                <a target="_blank" href="https://github.com/sa1fuu"><i class="fa-brands fa-github"></i></a>
+                <a target="_blank" href="https://www.linkedin.com/in/khansaif18"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a target="_blank" href="https://twitter.com/khansaif_18"><i
+                        class="fa-brands fa-square-x-twitter"></i></a>
+                <a target="_blank" href="mailto:contactsaif03@gmail.con"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="contactDiv hidecontactDiv" id="contactDiv">
+        <form class="conForm" id="conForm">
+
+            <i class="fa-solid fa-xmark" id="closeContact"></i>
+
+            <h2>Contact Us</h2>
+
+            <label for="conName">Enter Your Name </label>
+            <input type="text" id="conName" placeholder="Name Here.." />
+
+            <label for="conEmail">Enter Your Email </label>
+            <input type="email" id="conEmail" placeholder="Email Here.." />
+
+            <label for="conMessage">Enter Your Message </label>
+            <input id="conMessage" placeholder="Message Here.." />
+
+            <button>Send Message</button>
+
+        </form>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
+        import { getDatabase, set, ref, get, child, remove } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+        import { getStorage, ref as imgRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAl4gLv8Jtc3ZiIq_k70lJZXxeggXKra0M",
+            authDomain: "basicblog-5b58c.firebaseapp.com",
+            databaseURL: "https://basicblog-5b58c-default-rtdb.firebaseio.com",
+            projectId: "basicblog-5b58c",
+            storageBucket: "basicblog-5b58c.appspot.com",
+            messagingSenderId: "242631385678",
+            appId: "1:242631385678:web:7de237fad09f68fe66d91f"
+        }
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getDatabase(app);
+        const storage = getStorage(app);
+
+
+        function ShowLoader() {
+            document.getElementById('loader').classList.remove('hideLoader')
+            document.querySelector('.singleBlog').style.appearance = 'none'
+        }
+        function HideLoader() {
+            document.getElementById('loader').classList.add('hideLoader')
+            document.querySelector('.singleBlog').style.appearance = 'auto'
+        }
+
+        async function SingleBlogData() {
+
+            let blogId = localStorage.getItem('blogId')
+            const userRef = ref(db, 'myblogs');
+
+            ShowLoader()
+            await get(child(userRef, `${blogId}`))
+                .then((snapshot) => {
+                    if (snapshot.exists()) {
+                        const blogData = snapshot.val();
+                        document.getElementById('title').textContent = blogData.title
+                        document.querySelector('img').src = blogData.src
+                        document.getElementById('author').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> ${blogData.author}`
+                        document.getElementById('date').innerHTML = `<i class="fa-solid fa-clock"></i> ${blogData.date} | ${blogData.time}`
+                        document.getElementById('singleContent').textContent = blogData.content
+
+                        document.title = "The Code Blogs - " + blogData.title
+                    }
+                })
+            HideLoader()
+        }
+        window.addEventListener('load', SingleBlogData)
+
+
+        // Alert Box
+
+        function DisplayMessage(message) {
+            let body = document.querySelector('body')
+            let div = document.createElement('div')
+            div.classList.add('alert')
+            let btn = document.createElement('button')
+            btn.classList.add('fa-solid', 'fa-x')
+            let h5 = document.createElement('h5')
+            h5.innerText = message
+            body.append(div)
+            div.append(h5)
+            div.append(btn)
+            btn.addEventListener('click', () => {
+                body.removeChild(div)
+            })
+            setTimeout(() => {
+                body.removeChild(div)
+            }, 3500)
+        }
+
+
+        // Toggle Navbar
+
+        const closeNav = document.getElementById('closeNav')
+        const burger = document.getElementById('burger')
+        const nav = document.querySelector('nav')
+
+        burger.addEventListener('click', () => {
+            nav.classList.remove('hideNav')
+        })
+
+        closeNav.addEventListener('click', () => {
+            nav.classList.add('hideNav')
+        })
+
+        window.addEventListener('scroll', function () {
+            if (window.scrollY > 100) {
+                closeNav.click()
+                delContainer.style.display = 'none'
+                document.getElementById('myBlogsCont').style.filter = 'blur(0)'
+                document.getElementById('myBlogsCont').style.pointerEvents = 'all'
+            }
+        });
+
+        document.getElementById('home').addEventListener('click', () => {
+            window.location.href = 'index.html'
+        })
+
+
+        // Adding Active class on Nav link on Click
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const navLinks = document.querySelectorAll("nav a li");
+            navLinks.forEach(function (link) {
+                link.addEventListener("click", function (event) {
+                    navLinks.forEach(function (link) {
+                        link.classList.remove("active");
+                        nav.classList.add('hideNav')
+                    });
+                    event.target.classList.add("active");
+                });
+            });
+        });
+
+
+        // Contact Form
+
+        function ShowContactForm() {
+            document.getElementById('contactDiv').classList.remove('hidecontactDiv')
+            document.querySelector('.singleBlog').style.filter = 'blur(10px)'
+            document.querySelector('.singleBlog').style.pointerEvents = 'none'
+        }
+
+        function HideContactForm() {
+            document.getElementById('contactDiv').classList.add('hidecontactDiv')
+            document.getElementById('contact').classList.remove('active')
+            document.querySelector('.singleBlog').style.filter = 'blur(0)'
+            document.querySelector('.singleBlog').style.pointerEvents = 'all'
+        }
+
+        document.getElementById('contact').addEventListener('click', () => {
+            ShowContactForm()
+        })
+
+        document.getElementById('closeContact').addEventListener('click', () => {
+            HideContactForm()
+        })
+
+        // Handle Contact Form
+
+        const conForm = document.getElementById('conForm')
+
+        conForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            const name = document.getElementById('conName').value
+            const email = document.getElementById('conEmail').value
+            const message = document.getElementById('conMessage').value
+            const id = Math.floor(Math.random() * 30000)
+
+            if (name === '' || email === '' || message === '') {
+                DisplayMessage('Fill The Required Fields')
+            }
+            else {
+                set(ref(db, 'contactDetails/' + id), {
+                    name: name,
+                    email: email,
+                    message: message
+                }).then(() => {
+                    DisplayMessage('Thanks, We Will Get in Touch Soon')
+                }).catch((error) => {
+                    DisplayMessage(error.message);
+                });
+                document.getElementById('conName').value = ''
+                document.getElementById('conEmail').value = ''
+                document.getElementById('conMessage').value = ''
+                HideContactForm()
+            }
+        })
+    </script>
+
+</body>
+
+</html>

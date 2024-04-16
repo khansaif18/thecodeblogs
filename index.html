@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Type Animation CDN -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Platypi:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/4ee16d8c51.js" crossorigin="anonymous"></script>
+    <!-- Fav Icon -->
+    <link rel="shortcut icon"
+        href="https://firebasestorage.googleapis.com/v0/b/basicblog-5b58c.appspot.com/o/blogImages%2F028bdff2e4e74d9c93e4b61ce673ffe2.png?alt=media&token=347a8a07-d246-4149-a39e-6c66bee90850"
+        type="image/x-icon">
+    <!-- CSS File -->
+    <link rel="stylesheet" href="style.css">
+    <title>The Code Blogs</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h2>TheCodeBlogs</h2>
+        </div>
+        <nav class="hideNav">
+            <a>
+                <li id="home">Home</li>
+            </a>
+            <a>
+                <li id="blogs">Blogs</li>
+            </a>
+            <a>
+                <li id="contact">Contact</li>
+            </a>
+
+            <i class="fa-solid fa-xmark" id="closeNav"></i>
+        </nav>
+        <i class="fa-solid fa-bars" id="burger"></i>
+    </header>
+
+    <i class="fa-solid fa-user" id="user"></i>
+
+    <main>
+        <div class="about">
+            <h1>The Code Blogs</h1>
+            <h3>Latest in <span id="element"></span> </h3>
+            <div class="newsletter">
+                <p>Subscribe to Our newsletter to Stay Updated</p>
+                <form class="newsletter-form" id="newsForm">
+                    <input type="email" placeholder="Enter Email Address" id="newsEmail">
+                    <button> <i class="fa-solid fa-arrow-right"></i> </button>
+                </form>
+            </div>
+            <i class="fa-solid fa-chevron-down"></i>
+        </div>
+
+
+        <div class="main-blogs" id="mainBlogs">
+            <h1>Latest Blogs</h1>
+            <hr>
+            <div class="loader hideLoader" id="loader"></div>
+
+            <div class="main-blogs-cont" id="mainBlogsCont">
+
+
+                <!-- From DataBase -->
+
+                <!-- <div class="main-blog">
+                    <h2>» Blog Title</h2>
+                    <div class="main-img">
+                        <img src="https://images.pexels.com/photos/11621973/pexels-photo-11621973.jpeg?auto=compress&cs=tinysrgb&w=600"
+                            alt="mainImage">
+                    </div>
+                    <div class="blog-description">
+                        <span id="date-author">By Mohd Saif on 12/12/2024 </span>
+                        <p>Lorem ipsum lorem20 dolor sit lorem100 amet consectetur adipisicing elit. Cum, adipisci!</p>
+                        <a onclick="GetBlogId()" id="readBlogBtn" class="readBlogBtn">Read Complete Blog 1<i
+                                class="fa-solid fa-caret-right"></i></a>
+                    </div>
+                </div> -->
+
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <hr>
+        <div class="footer">
+            <p>Made with ❤️ by <b>Saif</b></p>
+            <div class="socials">
+                <a target="_blank" href="https://github.com/sa1fuu"><i class="fa-brands fa-github"></i></a>
+                <a target="_blank" href="https://www.linkedin.com/in/khansaif18"><i
+                        class="fa-brands fa-linkedin"></i></a>
+                <a target="_blank" href="https://twitter.com/khansaif_18"><i
+                        class="fa-brands fa-square-x-twitter"></i></a>
+                <a target="_blank" href="mailto:contactsaif03@gmail.con"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+
+    <section id="adminDashboard" class="admin-dashboard hide-admin-dashboard">
+
+
+        <form class="login" id="login">
+            <h2>Log In as Admin</h2>
+
+            <label for="email">Enter Email Address</label>
+            <input type="email" id="email" autocomplete="off" placeholder="Email">
+
+            <label for="password">Enter Password</label>
+            <div class="passDiv">
+                <input type="password" id="password" autocomplete="off" placeholder="Password">
+                <i class="fa-solid fa-eye-slash" id="closeEye"></i>
+                <i class="fa-solid fa-eye" id="openEye"></i>
+            </div>
+
+            <button>Log In</button>
+            <i class="fa-solid fa-xmark" id="closeLogin"></i>
+        </form>
+
+        <div class="dashboard hide-dashboard" id="dashboard">
+
+            <div class="top">
+                <button id="closeAdmin"><i class="fa-solid fa-circle-left"></i> Home</button>
+                <button id="newBlogBtn">New Blog</button>
+                <button id="logout">Log Out <i class="fa-solid fa-right-from-bracket"></i></button>
+            </div>
+            <hr>
+
+
+            <form class="hideBlogForm" id="postBlogForm">
+                <h2 id="formh2">Post a New Blog</h2>
+                <hr>
+                <label for="title">Enter Blog Title*</label>
+                <input type="text" placeholder="Title" id="title" autocomplete="off">
+
+                <label for="content">Enter Blog Content*</label>
+                <textarea id="content" cols="30" rows="5" placeholder="Content"></textarea>
+
+                <label for="author">Enter Author Name*</label>
+                <input type="text" placeholder="Author" id="author" autocomplete="off">
+
+                <label for="image" id="imageLabel">Select an Image*</label>
+                <input type="file" id="image" accept="image/*">
+
+                <span id="imagePreview"></span>
+
+                <button id="postBlogBtn">Post Blog</button>
+                <button id="updateBlogBtn" style="display: none;">Update Blog</button>
+            </form>
+
+
+            <div class="my-blogs-cont" id="myBlogsCont">
+                <h1>Admin Dashboard</h1>
+
+                <div class="loader hideAdminLoader" id="adminLoader"></div>
+
+                <div class="my-blogs" id="myBlogs">
+
+
+                    <!-- <div class="blog">
+                        <div class="blog-img">
+                            <div class="time-author">
+                                <span id="dateTime"><i class="fa-solid fa-pen-to-square"></i> Mohd Saif</span>
+                                <span id="dateTime"><i class="fa-solid fa-clock"></i> 11/4/2024 | 12:56</span>
+                            </div>
+                            <img src="https://images.pexels.com/photos/11621973/pexels-photo-11621973.jpeg?auto=compress&cs=tinysrgb&w=600"
+                                id="blogImg">
+                        </div>
+                        <div class="blog-conts">
+                            <h2>Blog Title</h2>
+                            <p>Blog Content</p>
+                            <div class="btns">
+                                <button onclick="DeleteBlog(${key})" title="Delete Blog"><i class="fa-solid fa-trash"></i>  </button>
+                                <button onclick="UpdateBlog(${key})" title="Update Blog"><i class="fa-solid fa-pen-to-square"></i>  </button>
+                                <button onclick="VisitBlog(${key})" title="Visit Blog"><i class="fa-solid fa-right-to-bracket"></i> </button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                </div>
+            </div>
+            <div class="delAlertContainer" id="deleteAlert">
+                <div class="deleteAlert">
+                    <h3>Are You Sure You Want To Delete?</h3>
+                    <p>It Will be Pemanently Deleted.</p>
+                    <div class="delAlertbtns">
+                        <button id="no">No, Cancel</button>
+                        <button id="yes">Yes, Proceed</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="contactDiv hidecontactDiv" id="contactDiv">
+        <form class="conForm" id="conForm">
+
+            <i class="fa-solid fa-xmark" id="closeContact"></i>
+            
+            <h2>Contact Us</h2>
+
+            <label for="conName">Enter Your Name </label>
+            <input type="text" id="conName" placeholder="Name Here.." />
+
+            <label for="conEmail">Enter Your Email </label>
+            <input type="email" id="conEmail" placeholder="Email Here.." />
+
+            <label for="conMessage">Enter Your Message </label>
+            <input id="conMessage" placeholder="Message Here.." />
+
+            <button>Send Message</button>
+
+        </form>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
