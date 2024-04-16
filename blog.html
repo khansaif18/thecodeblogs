@@ -32,9 +32,15 @@
             <a>
                 <li id="home">Home</li>
             </a>
+            <hr>
+            <a>
+                <li id="blogs">Blogs</li>
+            </a>
+            <hr>
             <a>
                 <li id="contact">Contact</li>
             </a>
+            <hr>
 
             <i class="fa-solid fa-xmark" id="closeNav"></i>
         </nav>
@@ -138,8 +144,8 @@
                         const blogData = snapshot.val();
                         document.getElementById('title').textContent = blogData.title
                         document.querySelector('img').src = blogData.src
-                        document.getElementById('author').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> ${blogData.author}`
-                        document.getElementById('date').innerHTML = `<i class="fa-solid fa-clock"></i> ${blogData.date} | ${blogData.time}`
+                        document.getElementById('author').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Author - <span>${blogData.author}</span> `
+                        document.getElementById('date').innerHTML = `<i class="fa-solid fa-calendar-days"></i> Last Updated -  <span>${blogData.date} | ${blogData.time}</span> `
                         document.getElementById('singleContent').textContent = blogData.content
 
                         document.title = "The Code Blogs - " + blogData.title

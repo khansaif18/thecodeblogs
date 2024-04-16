@@ -35,12 +35,15 @@
             <a>
                 <li id="home">Home</li>
             </a>
+            <hr>
             <a>
                 <li id="blogs">Blogs</li>
             </a>
+            <hr>
             <a>
                 <li id="contact">Contact</li>
             </a>
+            <hr>
 
             <i class="fa-solid fa-xmark" id="closeNav"></i>
         </nav>
@@ -71,22 +74,7 @@
 
             <div class="main-blogs-cont" id="mainBlogsCont">
 
-
-                <!-- From DataBase -->
-
-                <!-- <div class="main-blog">
-                    <h2>» Blog Title</h2>
-                    <div class="main-img">
-                        <img src="https://images.pexels.com/photos/11621973/pexels-photo-11621973.jpeg?auto=compress&cs=tinysrgb&w=600"
-                            alt="mainImage">
-                    </div>
-                    <div class="blog-description">
-                        <span id="date-author">By Mohd Saif on 12/12/2024 </span>
-                        <p>Lorem ipsum lorem20 dolor sit lorem100 amet consectetur adipisicing elit. Cum, adipisci!</p>
-                        <a onclick="GetBlogId()" id="readBlogBtn" class="readBlogBtn">Read Complete Blog 1<i
-                                class="fa-solid fa-caret-right"></i></a>
-                    </div>
-                </div> -->
+                <!-- From DataBase to Home Page -->
 
             </div>
 
@@ -132,9 +120,18 @@
         <div class="dashboard hide-dashboard" id="dashboard">
 
             <div class="top">
-                <button id="closeAdmin"><i class="fa-solid fa-circle-left"></i> Home</button>
-                <button id="newBlogBtn">New Blog</button>
-                <button id="logout">Log Out <i class="fa-solid fa-right-from-bracket"></i></button>
+                <button id="closeAdmin">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="tooltip-text">Home </span>
+                </button>
+                <button id="newBlogBtn">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="tooltip-text">New Blog</span>
+                </button>
+                <button id="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span class="tooltip-text">Log Out</span>
+                </button>
             </div>
             <hr>
 
@@ -168,26 +165,7 @@
 
                 <div class="my-blogs" id="myBlogs">
 
-
-                    <!-- <div class="blog">
-                        <div class="blog-img">
-                            <div class="time-author">
-                                <span id="dateTime"><i class="fa-solid fa-pen-to-square"></i> Mohd Saif</span>
-                                <span id="dateTime"><i class="fa-solid fa-clock"></i> 11/4/2024 | 12:56</span>
-                            </div>
-                            <img src="https://images.pexels.com/photos/11621973/pexels-photo-11621973.jpeg?auto=compress&cs=tinysrgb&w=600"
-                                id="blogImg">
-                        </div>
-                        <div class="blog-conts">
-                            <h2>Blog Title</h2>
-                            <p>Blog Content</p>
-                            <div class="btns">
-                                <button onclick="DeleteBlog(${key})" title="Delete Blog"><i class="fa-solid fa-trash"></i>  </button>
-                                <button onclick="UpdateBlog(${key})" title="Update Blog"><i class="fa-solid fa-pen-to-square"></i>  </button>
-                                <button onclick="VisitBlog(${key})" title="Visit Blog"><i class="fa-solid fa-right-to-bracket"></i> </button>
-                            </div>
-                        </div>
-                    </div> -->
+                    <!-- From Database to Admin Dashboard -->
 
                 </div>
             </div>
@@ -209,7 +187,7 @@
         <form class="conForm" id="conForm">
 
             <i class="fa-solid fa-xmark" id="closeContact"></i>
-            
+
             <h2>Contact Us</h2>
 
             <label for="conName">Enter Your Name </label>

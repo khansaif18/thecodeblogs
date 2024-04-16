@@ -239,7 +239,7 @@ async function GetPostData() {
             let { title, content, date, time, src, author, imageSrc } = blogs[key]
 
             if (title.length > 20) title = title.slice(0, 25) + '...'
-            if (content.length > 40) content = content.slice(0, 40) + '...'
+            if (content.length > 40) content = content.slice(0, 35) + '...'
             if (author == undefined) author = ' '
 
             container += `            
@@ -448,7 +448,7 @@ async function GetBlogtData() {
 
             container += `            
             <div class="main-blog">
-                  <h2>► ${title}</h2>
+                  <h2>${title}</h2>
                   <div class="main-img">
                        <img src="${src}" alt="blogImage/${key}">
                   </div>
@@ -482,7 +482,7 @@ function handleScrollForBlogData() {
 }
 
 function handleScrollForDownArrow() {
-    if (window.scrollY > window.innerHeight * 0.3) {
+    if (window.scrollY > window.innerHeight * 0.4) {
         document.querySelector('.fa-chevron-down').style.display = 'none'
     } else {
         document.querySelector('.fa-chevron-down').style.display = 'block'
@@ -578,11 +578,11 @@ const newBlogBtn = document.getElementById('newBlogBtn')
 
 function ToggleBlogForm() {
     postBlogForm.classList.toggle('hideBlogForm')
-    if (newBlogBtn.innerText !== '✖') {
-        newBlogBtn.innerText = ` ✖`
+    if (newBlogBtn.innerHTML.includes('fa-plus')) {
+        newBlogBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>'
     }
     else {
-        newBlogBtn.textContent = 'New Blog'
+        newBlogBtn.innerHTML = '<i class="fa-solid fa-plus"></i>'
     }
 }
 
