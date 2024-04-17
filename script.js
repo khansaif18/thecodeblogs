@@ -568,7 +568,6 @@ function DisplayMessage(message) {
 
 document.getElementById('closeLogin').addEventListener('click', () => {
     CloseAdminDashOnClick()
-    document.title = 'The Code Blogs - Home'
 })
 
 
@@ -614,7 +613,7 @@ closeNav.addEventListener('click', () => {
 window.addEventListener('scroll', function () {
     if (window.scrollY > 100) {
         closeNav.click()
-        HideContactForm()
+        HideContactForm(),
         delContainer.style.display = 'none'
         document.getElementById('myBlogsCont').style.filter = 'blur(0)'
         document.getElementById('myBlogsCont').style.pointerEvents = 'all'
@@ -642,7 +641,7 @@ newsForm.addEventListener('submit', (e) => {
         newsEmail.value = ''
     }
     else {
-        DisplayMessage('Enter Email First')
+        DisplayMessage('Enter Valid Email ')
     }
 })
 
