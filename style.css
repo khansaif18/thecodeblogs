@@ -52,7 +52,7 @@ header nav {
     display: flex;
 }
 
-header nav hr{
+header nav hr {
     display: none;
 }
 
@@ -169,6 +169,7 @@ nav a li:hover::after {
 @media (max-width:500px) {
     header nav {
         width: 60vw;
+        z-index: 99;
     }
 }
 
@@ -352,7 +353,7 @@ main {
         justify-content: center;
     }
 
-    .about h5{
+    .about h5 {
         top: 5px;
     }
 
@@ -578,7 +579,7 @@ main {
 /* Single Blog Section */
 
 .singleBlog {
-    min-height: 90vh;
+    min-height: 100vh;
     margin-top: 70px;
     width: 70%;
     display: flex;
@@ -630,7 +631,7 @@ main {
     color: rgba(255, 250, 250, 0.719);
 }
 
-.singleBlog .desc p span{
+.singleBlog .desc p span {
     font-size: 14px;
     color: #009688;
 }
@@ -646,12 +647,228 @@ main {
     font-size: 35px;
 }
 
+#midHR {
+    width: 80%;
+    height: 1px;
+    margin: 2rem 0;
+    opacity: 0.2;
+    color: #009687b2;
+}
+
+/* Review */
+
+.reviewCont {
+    width: 70%;
+    padding: 2rem 0;
+    gap: 1rem;
+}
+
+.reviewCont .reviewBtn {
+    background: transparent;
+    border: 1px solid #ffffff61;
+    padding: 8px 1rem;
+    width: 50%;
+    color: #fff;
+    opacity: 0.7;
+    cursor: pointer;
+    margin-top: 2rem;
+    letter-spacing: 1px;
+    border-radius: 2rem;
+    transition: 0.3s ease;
+}
+
+.reviewBtn:hover {
+    border: 1px solid #009688;
+}
+
+.reviewBtn:hover i {
+    color: #009688;
+    transform: translateX(-3px);
+    transform: scale(1.3);
+}
+
+.reviewBtn i {
+    margin-left: 7px;
+    transition: all 0.3s ease;
+}
+
+.hideformCont {
+    display: none;
+}
+
+.reviewCont form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #0096875c;
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+#closeReviewForm {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 1.2rem;
+    opacity: 0.5;
+    background: #0096875c;
+    padding: 2px 5px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    color: #ffffff95;
+    transition: all 0.3s ease;
+}
+
+#closeReviewForm:hover {
+    color: #fff;
+    opacity: 1;
+    background: #009688;
+}
+
+.reviewCont form input {
+    border: 1px solid #ffffff24;
+    outline: none;
+    border-radius: 2rem;
+    padding: 8px 1rem;
+    color: #fff;
+    background: transparent;
+}
+
+.reviewCont form input:focus {
+    border: 1px solid #0096875c
+}
+
+.reviewCont form input::placeholder {
+    letter-spacing: 1px;
+    opacity: 0.2;
+}
+
+.reviewCont form button {
+    border: 1px solid #ffffff24;
+    outline: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    padding: 8px 1rem;
+    letter-spacing: 1px;
+    width: 50%;
+    color: #ffffff87;
+    opacity: 0.5;
+    background: transparent;
+    transition: 0.3s ease;
+}
+
+.reviewCont form button:hover {
+    border: 1px solid #0096875c;
+    color: #009688;
+    opacity: 1;
+}
+
+/* User Reviews */
+
+.userFeedbacks {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border-radius: 1.2rem;
+    padding: 2rem 1rem;
+    border: 1px solid #ffffff0d;
+}
+
+.userFeedbacks h2 {
+    color: #009688;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+
+.feedbackCont {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.userFeedbacks .feedback {
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    color: #fff;
+    width: 300px;
+    gap: 1rem;
+    position: relative;
+    min-height: 150px;
+    overflow-y: scroll;
+    border: 1px solid #ffffff29;
+    transition: all 0.3s ease-in;
+}
+
+.feedback:hover {
+    transform: scale(1.02);
+    border: 1px solid #0096875c;
+}
+
+.feedback hr {
+    margin: 10px 0;
+    width: 100%;
+    height: 1px;
+    color: #00968734;
+}
+
+.userFeedbacks .feedback .nameDate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nameDate .fa-user,
+.fa-clock {
+    font-size: 12px;
+}
+
+.nameDate h3 {
+    font-size: 15px;
+    color: #009687d7;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+    gap: 5px;
+}
+
+.nameDate p {
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.feedback #feedbackMsg {
+
+    color: #ffffff83;
+    font-size: 0.9rem;
+}
+
+#delReview{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 15px;
+    padding: 5px 6px;
+    cursor: pointer;
+    display: none;
+    border-radius: 50%;
+    color: #ffffff61;
+    transition: all 0.3s ease-in;
+}
+
+#delReview:hover{
+    background: #00968745;
+    color: #fff;
+}
+
 @media (max-width:850px) {
-    #goback {
-        left: 2px;
-        backdrop-filter: blur(10px);
-        z-index: 2;
-    }
 
     .singleBlog {
         margin-top: 70px;
@@ -664,6 +881,16 @@ main {
 
     .singleBlog .header {
         max-height: 80vh;
+    }
+
+    #midHR {
+        width: 90%;
+    }
+
+    /* Review */
+
+    .reviewCont {
+        width: 80%;
     }
 }
 
@@ -694,6 +921,18 @@ main {
     #singleContent {
         font-size: 90%;
         padding: 10px;
+    }
+
+    .reviewCont {
+        width: 90%;
+    }
+
+    .reviewCont .reviewBtn {
+        width: 60%;
+    }
+
+    .reviewCont form {
+        padding: 2.5rem 1rem;
     }
 }
 
@@ -1328,9 +1567,10 @@ textarea {
 }
 
 @media (max-width:500px) {
-    .blog{
+    .blog {
         width: 95%;
     }
+
     .my-blogs-cont h1 {
         font-size: 1rem;
         width: 80%;
@@ -1533,3 +1773,115 @@ textarea {
     background: #16b0a16f;
 }
 
+
+
+/* Search Bar */
+
+#searchIcon {
+    position: absolute;
+    right: 4rem;
+    cursor: pointer;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+#searchIcon:hover {
+    color: #009688;
+}
+
+
+#closeSearch {
+    font-size: 1.5rem;
+    position: absolute;
+    right: 6px;
+    border-radius: 50%;
+    background: #00968758;
+    padding: 2px 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+
+
+.searchCont {
+    position: fixed;
+    top: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in;
+}
+
+.hideSearchCont {
+    transform: translateY(-300px);
+}
+
+.searchCont #clearSearch {
+    position: absolute;
+    right: 1rem;
+    cursor: pointer;
+    padding: 2px 5px;
+    display: none;
+}
+
+#searchInput {
+    background-image: linear-gradient(to right top, #131414, #0f1010, #0b0b0c, #060606, #000000);
+    padding: 10px 1rem;
+    font-size: 13px;
+    border-radius: 2rem;
+    border: 1px solid #ffffff3d;
+    color: #fff;
+    width: 300px;
+    outline: none;
+}
+
+#searchInput:focus {
+    border: 1px solid #009688;
+}
+
+#searchInput::placeholder {
+    opacity: 0.3;
+    letter-spacing: 1px;
+    font-size: 13px;
+    color: #ffffff57;
+}
+
+@media (max-width:950px) {
+    nav {
+        z-index: 91;
+    }
+
+    #burger {
+        position: absolute;
+        z-index: 90;
+        right: 3rem;
+    }
+
+    header .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    #searchIcon {
+        left: 3rem;
+    }
+
+}
+
+@media (max-width:550px) {
+    #burger {
+        position: absolute;
+        z-index: 90;
+        right: 1rem;
+    }
+
+    header .logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    #searchIcon {
+        left: 1rem;
+    }
+
+}

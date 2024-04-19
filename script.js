@@ -467,7 +467,67 @@ async function GetBlogtData() {
         myBlogs.innerHTML = container
         HideLoader()
     })
+
+    // Search Feature
+
+    function Filter() {
+        var searchValue = document.getElementById('searchInput').value.toLowerCase();
+        var cards = document.querySelectorAll('.main-blog');
+        cards.forEach(function (card) {
+            var title = card.querySelector('h2').textContent.toLowerCase();
+            var description = card.querySelector('#date-author').textContent.toLowerCase();
+
+            if (title.includes(searchValue) || description.includes(searchValue)) {
+                card.style.display = 'block'; // Show the card
+            } else {
+                card.style.display = 'none'; // Hide the card
+            }
+        });
+    }
+
+    searchInput.addEventListener('input', () => {
+        Filter()
+    });
 }
+
+const searchIcon = document.getElementById('searchIcon')
+const closeSearch = document.getElementById('closeSearch')
+const searchCont = document.getElementById('searchCont')
+const searchInput = document.getElementById('searchInput')
+// const clearSearch = document.getElementById('clearSearch')
+
+
+searchIcon.addEventListener('click', () => {
+    searchCont.classList.toggle('hideSearchCont'),
+        closeSearch.style.display = 'block'
+    searchInput.focus()
+    ScrolltoBlogs()
+    document.querySelectorAll('nav a li').forEach((link) => {
+        link.classList.remove('active')
+    })
+})
+
+function CloseSearchCont() {
+    searchCont.classList.add('hideSearchCont'),
+        closeSearch.style.display = 'none'
+    searchIcon.style.display = 'block'
+    // ScrolltoTop()
+}
+
+closeSearch.addEventListener('click', () => {
+    CloseSearchCont()
+})
+
+function ScrolltoBlogs() {
+    let scrollPosition = 0;
+    scrollPosition = window.innerHeight * 0.88;
+    window.scrollTo({
+        top: scrollPosition,
+        left: 0,
+    });
+}
+
+
 
 
 // Firing the Function to Get Data only When the User Has Scrolled More Than 100vh
@@ -613,7 +673,8 @@ closeNav.addEventListener('click', () => {
 window.addEventListener('scroll', function () {
     if (window.scrollY > 100) {
         closeNav.click()
-        HideContactForm(),
+        HideContactForm()
+        // HideSearchBar()
         delContainer.style.display = 'none'
         document.getElementById('myBlogsCont').style.filter = 'blur(0)'
         document.getElementById('myBlogsCont').style.pointerEvents = 'all'
@@ -657,13 +718,17 @@ document.getElementById('blogs').addEventListener('click', (e) => {
     });
 });
 
+function ScrolltoTop() {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+}
+
 document.getElementById('home').addEventListener('click', (e) => {
     e.preventDefault(),
-        window.scrollTo({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
+        ScrolltoTop()
 });
 
 
@@ -674,6 +739,7 @@ document.addEventListener("DOMContentLoaded", function () {
     navLinks.forEach(function (link) {
         link.addEventListener("click", function (event) {
             navLinks.forEach(function (link) {
+                CloseSearchCont()
                 link.classList.remove("active");
                 nav.classList.add('hideNav')
             });
@@ -736,3 +802,5 @@ conForm.addEventListener('submit', (e) => {
         HideContactForm()
     }
 })
+
+

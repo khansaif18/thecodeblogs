@@ -59,6 +59,34 @@
         <p class="singleContent" id="singleContent"></p>
     </div>
 
+    <hr id="midHR">
+
+    <div class="reviewCont" id="reviewCont">
+
+        <div class="userFeedbacks">
+            <h2>Reader's Takes</h2>
+
+            <div class="feedbackCont" id="feedbackCont">
+
+                <!-- Feedbacks from Backend -->
+
+            </div>
+
+        </div>
+
+        <button class="reviewBtn" id="reviewBtn"> Drop a Feedback <i class="fa-solid fa-reply"></i></button>
+
+        <div class="formCont hideformCont" id="formCont">
+            <form id="reviewForm">
+                <i class="fa-solid fa-xmark" id="closeReviewForm"></i>
+                <input type="text" placeholder="Your Name" autocomplete="off" id="reviewName">
+                <input type="text" placeholder="Review / Feedback" id="reviewMsg" autocomplete="off">
+                <button>Add Feedback</button>
+            </form>
+        </div>
+
+    </div>
+
 
     <footer>
         <hr>
@@ -99,7 +127,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-app.js";
         import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-auth.js";
-        import { getDatabase, set, ref, get, child, remove } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
+        import { getDatabase, set, ref, get, child, remove, update } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-database.js";
         import { getStorage, ref as imgRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 
         const firebaseConfig = {
@@ -149,7 +177,13 @@
                 })
             HideLoader()
         }
-        window.addEventListener('load', SingleBlogData)
+
+        window.addEventListener('load', () => {
+            SingleBlogData()
+            GetUserReviews().then(() => {
+                document.getElementById('reviewCont').style.display = 'block'
+            })
+        })
 
 
         // Alert Box
@@ -191,9 +225,6 @@
         window.addEventListener('scroll', function () {
             if (window.scrollY > 100) {
                 closeNav.click()
-                delContainer.style.display = 'none'
-                document.getElementById('myBlogsCont').style.filter = 'blur(0)'
-                document.getElementById('myBlogsCont').style.pointerEvents = 'all'
             }
         });
 
@@ -271,6 +302,133 @@
                 HideContactForm()
             }
         })
+
+        // Review
+
+        async function PostReview() {
+            const reviewMsg = document.getElementById('reviewMsg').value
+            const reviewName = document.getElementById('reviewName').value
+            const date = new Date();
+            const key = localStorage.getItem('blogId')
+            const id = Math.floor(Math.random() * 100000);
+
+
+            let day = date.getDate();
+            if (day < 10) day = '0' + day;
+            let month = date.getMonth() + 1;
+            if (month < 10) month = '0' + month;
+
+            let hour = date.getHours();
+            if (hour < 10) hour = '0' + hour;
+            let minute = date.getMinutes();
+            if (minute < 10) minute = '0' + minute;
+
+            const currentDate = `${day}/${month}/${date.getFullYear()}`;
+            const currentTime = `${hour}:${minute}`;
+
+            await update(ref(db, `myblogs/${key}/reviews/${id}`), {
+                name: reviewName,
+                message: reviewMsg,
+                reviewdate: currentDate,
+                reviewtime: currentTime,
+
+            }).then(() => {
+                DisplayMessage('Review Added')
+                document.getElementById('reviewMsg').value = ''
+                document.getElementById('reviewName').value = ''
+                formCont.classList.add('hideformCont')
+            }).catch((error) => {
+                DisplayMessage('Error posting Review. Please try again.');
+            });
+        }
+
+        const reviewBtn = document.getElementById('reviewBtn')
+        const formCont = document.getElementById('formCont')
+        const closeReviewForm = document.getElementById('closeReviewForm')
+
+        reviewBtn.addEventListener('click', () => {
+            formCont.classList.toggle('hideformCont')
+            document.getElementById('reviewMsg').value = ''
+            document.getElementById('reviewName').value = ''
+        })
+
+        closeReviewForm.addEventListener('click', () => {
+            formCont.classList.add('hideformCont')
+            document.getElementById('reviewMsg').value = ''
+            document.getElementById('reviewName').value = ''
+        })
+
+        const reviewMsg = document.getElementById('reviewMsg')
+        const reviewName = document.getElementById('reviewName')
+        const reviewForm = document.getElementById('reviewForm')
+
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault()
+            if (reviewName.value === '') {
+                DisplayMessage('Enter Your Name')
+            }
+            else {
+                if (reviewMsg.value !== '') {
+                    PostReview()
+                    GetUserReviews()
+                }
+                else {
+                    DisplayMessage('Enter Your Feedback ')
+                }
+            }
+
+        })
+
+
+        async function GetUserReviews() {
+            ShowLoader()
+            const id = localStorage.getItem('blogId')
+            const reviewRef = ref(db, `myblogs/${id}/reviews/`)
+            await get(reviewRef).then((snapshot) => {
+
+                const review = snapshot.val()
+
+                let container = "";
+
+                const reviews = document.getElementById('feedbackCont')
+                for (const key in review) {
+                    let { name, message, reviewdate } = review[key]
+
+                    if (name.length > 12) name = name.slice(0, 12) + '..'
+
+                    container += `            
+                     <div class="feedback">
+                        <div class="nameDate">
+                            <h3 id="username"><i class="fa-regular fa-user"></i> ${name}</h3>
+                            <p id="reviewDate"><i class="fa-regular fa-clock"></i> ${reviewdate}</p>
+                       </div>
+                       <hr>
+                       <p id="feedbackMsg">${message}</p>
+                       <i class="fa-solid fa-trash" id="delReview" onclick="DeleteReview(${key})"></i>
+                    </div>
+                       `
+
+                }
+
+                reviews.innerHTML = container
+            })
+            HideLoader()
+        }
+
+        window.DeleteReview = async (key) => {
+            const id = localStorage.getItem('blogId')
+            await remove(ref(db, `myblogs/${id}/reviews/${key}`)).then(() => {
+                DisplayMessage("User's Review Deleted")
+                GetUserReviews()
+            })
+        }
+
+        // onAuthStateChanged(auth, (user) => {
+        //     if (user) {
+        //         document.getElementById('delReview').style.display =  'block'
+        //     } 
+        // })
+
     </script>
 
 </body>
