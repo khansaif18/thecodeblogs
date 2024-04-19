@@ -475,9 +475,9 @@ async function GetBlogtData() {
         var cards = document.querySelectorAll('.main-blog');
         cards.forEach(function (card) {
             var title = card.querySelector('h2').textContent.toLowerCase();
-            var description = card.querySelector('#date-author').textContent.toLowerCase();
+            var author = card.querySelector('#date-author').textContent.toLowerCase();
 
-            if (title.includes(searchValue) || description.includes(searchValue)) {
+            if (title.includes(searchValue) || author.includes(searchValue)) {
                 card.style.display = 'block'; // Show the card
             } else {
                 card.style.display = 'none'; // Hide the card
@@ -488,13 +488,27 @@ async function GetBlogtData() {
     searchInput.addEventListener('input', () => {
         Filter()
     });
+
+    searchIcon.addEventListener('click', () => {
+        Filter()
+    })
+
+    closeSearch.addEventListener('click', () => {
+        CloseSearchCont()
+        Filter()
+    })
+
+    document.querySelectorAll('nav a li').forEach((link) => {
+        link.addEventListener('click', () => {
+            Filter()
+        })
+    })
 }
 
 const searchIcon = document.getElementById('searchIcon')
 const closeSearch = document.getElementById('closeSearch')
 const searchCont = document.getElementById('searchCont')
 const searchInput = document.getElementById('searchInput')
-// const clearSearch = document.getElementById('clearSearch')
 
 
 searchIcon.addEventListener('click', () => {
@@ -511,12 +525,13 @@ function CloseSearchCont() {
     searchCont.classList.add('hideSearchCont'),
         closeSearch.style.display = 'none'
     searchIcon.style.display = 'block'
-    // ScrolltoTop()
+    searchInput.value = ''
 }
 
 closeSearch.addEventListener('click', () => {
     CloseSearchCont()
 })
+
 
 function ScrolltoBlogs() {
     let scrollPosition = 0;
