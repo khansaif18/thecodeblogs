@@ -180,9 +180,7 @@
 
         window.addEventListener('load', () => {
             SingleBlogData()
-            GetUserReviews().then(() => {
-                document.getElementById('reviewCont').style.display = 'block'
-            })
+            GetUserReviews()
         })
 
 
@@ -333,7 +331,7 @@
                 reviewtime: currentTime,
 
             }).then(() => {
-                DisplayMessage('Review Added')
+                DisplayMessage('Thank You For the Feedback')
                 document.getElementById('reviewMsg').value = ''
                 document.getElementById('reviewName').value = ''
                 formCont.classList.add('hideformCont')
@@ -346,16 +344,24 @@
         const formCont = document.getElementById('formCont')
         const closeReviewForm = document.getElementById('closeReviewForm')
 
+        function ScrolltoBottom() {
+            window.scrollTo({
+                bottom: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
+
         reviewBtn.addEventListener('click', () => {
             formCont.classList.toggle('hideformCont')
             document.getElementById('reviewMsg').value = ''
             document.getElementById('reviewName').value = ''
+            reviewName.focus()
+            ScrolltoBottom()
         })
 
         closeReviewForm.addEventListener('click', () => {
             formCont.classList.add('hideformCont')
-            document.getElementById('reviewMsg').value = ''
-            document.getElementById('reviewName').value = ''
         })
 
         const reviewMsg = document.getElementById('reviewMsg')
@@ -373,7 +379,7 @@
                     GetUserReviews()
                 }
                 else {
-                    DisplayMessage('Enter Your Feedback ')
+                    DisplayMessage('Enter the Feedback ')
                 }
             }
 
@@ -426,7 +432,7 @@
         // onAuthStateChanged(auth, (user) => {
         //     if (user) {
         //         document.getElementById('delReview').style.display =  'block'
-        //     } 
+        //     }
         // })
 
     </script>

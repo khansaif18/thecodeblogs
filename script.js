@@ -487,14 +487,13 @@ async function GetBlogtData() {
 
     searchInput.addEventListener('input', () => {
         Filter()
+        if(searchInput.value === '') clearInput.style.display = 'none'
+        else clearInput.style.display ='block'
     });
 
-    searchIcon.addEventListener('click', () => {
-        Filter()
-    })
-
-    closeSearch.addEventListener('click', () => {
-        CloseSearchCont()
+    clearInput.addEventListener('click', () => {
+        searchInput.value = ''
+        clearInput.style.display = 'none'
         Filter()
     })
 
@@ -505,44 +504,8 @@ async function GetBlogtData() {
     })
 }
 
-const searchIcon = document.getElementById('searchIcon')
-const closeSearch = document.getElementById('closeSearch')
-const searchCont = document.getElementById('searchCont')
 const searchInput = document.getElementById('searchInput')
-
-
-searchIcon.addEventListener('click', () => {
-    searchCont.classList.toggle('hideSearchCont'),
-        closeSearch.style.display = 'block'
-    searchInput.focus()
-    ScrolltoBlogs()
-    document.querySelectorAll('nav a li').forEach((link) => {
-        link.classList.remove('active')
-    })
-})
-
-function CloseSearchCont() {
-    searchCont.classList.add('hideSearchCont'),
-        closeSearch.style.display = 'none'
-    searchIcon.style.display = 'block'
-    searchInput.value = ''
-}
-
-closeSearch.addEventListener('click', () => {
-    CloseSearchCont()
-})
-
-
-function ScrolltoBlogs() {
-    let scrollPosition = 0;
-    scrollPosition = window.innerHeight * 0.88;
-    window.scrollTo({
-        top: scrollPosition,
-        left: 0,
-    });
-}
-
-
+const clearInput = document.getElementById('clearInput')
 
 
 // Firing the Function to Get Data only When the User Has Scrolled More Than 100vh
@@ -566,7 +529,7 @@ function handleScrollForDownArrow() {
 
 window.addEventListener('scroll', handleScrollForBlogData);
 window.addEventListener('scroll', handleScrollForDownArrow);
-
+handleScrollForBlogData()
 
 
 
@@ -689,7 +652,6 @@ window.addEventListener('scroll', function () {
     if (window.scrollY > 100) {
         closeNav.click()
         HideContactForm()
-        // HideSearchBar()
         delContainer.style.display = 'none'
         document.getElementById('myBlogsCont').style.filter = 'blur(0)'
         document.getElementById('myBlogsCont').style.pointerEvents = 'all'
@@ -754,7 +716,6 @@ document.addEventListener("DOMContentLoaded", function () {
     navLinks.forEach(function (link) {
         link.addEventListener("click", function (event) {
             navLinks.forEach(function (link) {
-                CloseSearchCont()
                 link.classList.remove("active");
                 nav.classList.add('hideNav')
             });
