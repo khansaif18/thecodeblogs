@@ -487,9 +487,13 @@ async function GetBlogtData() {
 
     searchInput.addEventListener('input', () => {
         Filter()
-        if(searchInput.value === '') clearInput.style.display = 'none'
-        else clearInput.style.display ='block'
+        if (searchInput.value === '') clearInput.style.display = 'none'
+        else clearInput.style.display = 'block'
     });
+
+    searchInput.addEventListener('click', () => {
+        ScrolltoBlogs()
+    })
 
     clearInput.addEventListener('click', () => {
         searchInput.value = ''
@@ -683,16 +687,20 @@ newsForm.addEventListener('submit', (e) => {
     }
 })
 
-let scrollPosition = 0;
 
-document.getElementById('blogs').addEventListener('click', (e) => {
-    e.preventDefault()
+function ScrolltoBlogs() {
+    let scrollPosition = 0;
     scrollPosition = window.innerHeight * 0.95;
     window.scrollTo({
         top: scrollPosition,
         left: 0,
         behavior: 'smooth'
     });
+}
+
+document.getElementById('blogs').addEventListener('click', (e) => {
+    e.preventDefault()
+    ScrolltoBlogs()
 });
 
 function ScrolltoTop() {

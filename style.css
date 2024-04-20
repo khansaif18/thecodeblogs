@@ -405,11 +405,13 @@ main {
 
 .main-blogs hr {
     width: 80%;
-    height: 0px;
-    margin: 1rem 0 1rem 0;
-    color: #00968765;
+    height: 0;
+    margin: 1rem 0;
+    border: none; 
+    border-top: 1px solid rgba(0, 150, 135, 0.53); 
     opacity: 0.3;
 }
+
 
 
 
@@ -708,10 +710,11 @@ main {
 
 #midHR {
     width: 80%;
-    height: 1px;
-    margin: 2rem 0;
-    opacity: 0.2;
-    color: #009687b2;
+    height: 0;
+    margin: 1rem 0;
+    border: none; 
+    border-top: 1px solid rgba(0, 150, 135, 0.53); 
+    opacity: 0.3;
 }
 
 /* Review */
@@ -832,7 +835,6 @@ main {
     gap: 1rem;
     position: relative;
     min-height: 120px;
-    overflow-y: scroll;
     border: 1px solid #ffffff0c;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease-in;
@@ -846,8 +848,11 @@ main {
 .feedback hr {
     margin: 10px 0;
     width: 100%;
-    height: 1px;
-    color: #00968734;
+    height: 0;
+    margin: 1rem 0;
+    border: none; 
+    border-top: 1px solid rgba(0, 150, 135, 0.53); 
+    opacity: 0.3;
 }
 
 .userFeedbacks .feedback .nameDate {
@@ -1023,10 +1028,11 @@ footer {
 
 footer hr {
     width: 80%;
-    height: 1px;
-    margin-bottom: 2rem;
-    opacity: 0.2;
-    color: #009687b2;
+    height: 0;
+    margin: 1rem 0;
+    border: none; 
+    border-top: 1px solid rgba(0, 150, 135, 0.53); 
+    opacity: 0.3;
 }
 
 footer p {
