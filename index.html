@@ -181,9 +181,12 @@
                 <button id="updateBlogBtn" style="display: none;">Update Blog</button>
             </form>
 
+            <!-- Blogs List on Dashboard -->
 
-            <div class="my-blogs-cont" id="myBlogsCont">
-                <h1>Admin Dashboard</h1>
+            <h1 class="mainh1">Admin Dashboard</h1>
+
+            <button id="showBlogs">Blogs <i class="fa-solid fa-angle-down" id="arrowBlogs"></i></button>
+            <div class="my-blogs-cont hideAdminBlogs" id="myBlogsCont">
 
                 <div class="loader hideAdminLoader" id="adminLoader"></div>
 
@@ -209,13 +212,16 @@
 
             <!-- Messages on Admin Dashboard From Contact Form -->
 
-            <div class="messageCont">
-                <h1>Messages from Contact Form</h1>
-                <hr>
-                <div class="messages" id="messages">
+            <div class="messageContainer">
+                <button id="showMessages">Messages <i class="fa-solid fa-angle-down" id="arrow"></i></button>
+                <div class="messageCont hideMessageCont" id="messageCont">
+                    <h1>Messages from Contact Form</h1>
+                    <hr>
+                    <div class="messages" id="messages">
 
-                    <!-- Messages from Database -->
-                    
+                        <!-- Messages from Database -->
+
+                    </div>
                 </div>
             </div>
 
@@ -232,13 +238,13 @@
             <h2>Contact Us</h2>
 
             <label for="conName">Enter Your Name </label>
-            <input type="text" id="conName" placeholder="Name Here.." autocomplete="off"/>
+            <input type="text" id="conName" placeholder="Name Here.." autocomplete="off" />
 
             <label for="conEmail">Enter Your Email </label>
-            <input type="email" id="conEmail" placeholder="Email Here.." autocomplete="off"/>
+            <input type="email" id="conEmail" placeholder="Email Here.." autocomplete="off" />
 
             <label for="conMessage">Enter Your Message </label>
-            <input id="conMessage" placeholder="Message Here.." autocomplete="off"/>
+            <input id="conMessage" placeholder="Message Here.." autocomplete="off" />
 
             <button>Send Message</button>
 

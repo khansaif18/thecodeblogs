@@ -48,6 +48,8 @@ async function GetMessages() {
         for (const key in messages) {
             let { email, message, name, date, time } = messages[key]
 
+            if (name.length > 9) name = name.slice(0, 10) + '..'
+
             container += `            
             <div class="message">
                 <div class="nameEmail">
@@ -73,6 +75,21 @@ async function GetMessages() {
                 DisplayMessage('Message Deleted')
             })
     }
+
+    const showMessages = document.getElementById('showMessages')
+    const messageCont = document.getElementById('messageCont')
+    const arrow = document.getElementById('arrow')
+    showMessages.addEventListener('click', () => {
+        if (messageCont.className.includes('hideMessageCont')) {
+            messageCont.classList.remove('hideMessageCont')
+            arrow.style.rotate = '-180deg'
+        }
+        else {
+            messageCont.classList.add('hideMessageCont')
+            arrow.style.rotate = '0deg'
+        }
+        // GetMessages()
+    })
 }
 GetMessages()
 
@@ -309,6 +326,19 @@ async function GetPostData() {
         }
         myBlogs.innerHTML = container
         ShowAdminLoader()
+    })
+    const showBlogs = document.getElementById('showBlogs')
+    const myBlogsCont = document.getElementById('myBlogsCont')
+    const arrowBlogs = document.getElementById('arrowBlogs')
+    showBlogs.addEventListener('click', () => {
+        if (myBlogsCont.className.includes('hideAdminBlogs')) {
+            myBlogsCont.classList.remove('hideAdminBlogs')
+            arrowBlogs.style.rotate = '-180deg'
+        }
+        else {
+            myBlogsCont.classList.add('hideAdminBlogs')
+            arrowBlogs.style.rotate = '0deg'
+        }
     })
 }
 
