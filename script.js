@@ -31,10 +31,50 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         HideLoginShowDashboard()
         admin.style.display = 'block'
+        // GetMessages()
     } else {
         ShowLoginHideDashboard()
     }
 })
+
+
+async function GetMessages() {
+    await get(ref(db, 'contactDetails/')).then((snapshot) => {
+        const messages = snapshot.val()
+
+        let container = "";
+
+        const messageCont = document.getElementById('messages')
+        for (const key in messages) {
+            let { email, message, name, date, time } = messages[key]
+
+            container += `            
+            <div class="message">
+                <div class="nameEmail">
+                  <h3 id="username"><i class="fa-regular fa-user"></i> ${name}</h3>
+                  <p id="reviewDate"><i class="fa-regular fa-envelope"></i> ${email}</p>
+               </div>
+               
+               <p id="contactMsg">${message}</p>
+               <div class="deleteReply">
+                    <span>${time} | ${date}</span>
+                    <i class="fa-solid fa-trash" id="delConMsg" onclick="DeleteContactMessage(${key})"></i>
+                    <a href="mailto:${email}"><i class="fa-solid fa-reply"></i></a>
+               </div>
+            </div>
+               `
+        }
+        messageCont.innerHTML = container
+    })
+    window.DeleteContactMessage = async (key) => {
+        await remove(ref(db, `contactDetails/${key}`))
+            .then(() => {
+                GetMessages()
+                DisplayMessage('Message Deleted')
+            })
+    }
+}
+GetMessages()
 
 // Function to Show and Hide Login Form and Dashboard
 
@@ -683,7 +723,7 @@ newsForm.addEventListener('submit', (e) => {
         newsEmail.value = ''
     }
     else {
-        DisplayMessage('Enter Valid Email ')
+        DisplayMessage('Enter a Valid Email ')
     }
 })
 
@@ -767,6 +807,21 @@ conForm.addEventListener('submit', (e) => {
     const message = document.getElementById('conMessage').value
     const id = Math.floor(Math.random() * 30000)
 
+    const date = new Date();
+
+    let day = date.getDate();
+    if (day < 10) day = '0' + day;
+    let month = date.getMonth() + 1;
+    if (month < 10) month = '0' + month;
+
+    let hour = date.getHours();
+    if (hour < 10) hour = '0' + hour;
+    let minute = date.getMinutes();
+    if (minute < 10) minute = '0' + minute;
+
+    const messageDate = `${day}/${month}/${date.getFullYear()}`;
+    const messageTime = `${hour}:${minute}`;
+
     if (name === '' || email === '' || message === '') {
         DisplayMessage('Fill The Required Fields')
     }
@@ -774,8 +829,11 @@ conForm.addEventListener('submit', (e) => {
         set(ref(db, 'contactDetails/' + id), {
             name: name,
             email: email,
-            message: message
+            message: message,
+            date: messageDate,
+            time: messageTime
         }).then(() => {
+            GetMessages()
             DisplayMessage('Thanks, We Will Get in Touch Soon')
         }).catch((error) => {
             DisplayMessage(error.message);

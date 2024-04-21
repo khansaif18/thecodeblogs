@@ -407,11 +407,10 @@ main {
     width: 80%;
     height: 0;
     margin: 1rem 0;
-    border: none; 
-    border-top: 1px solid rgba(0, 150, 135, 0.53); 
+    border: none;
+    border-top: 1px solid rgba(0, 150, 135, 0.53);
     opacity: 0.3;
 }
-
 
 
 
@@ -426,6 +425,19 @@ main {
     transition: all 0.3s ease-in;
 }
 
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchCont .fa-magnifying-glass {
+    position: absolute;
+    left: 10px;
+    opacity: 0.3;
+    font-size: 0.8rem;
+}
+
 .searchCont #clearInput {
     color: #fff;
     cursor: pointer;
@@ -438,7 +450,7 @@ main {
 
 #searchInput {
     background: transparent;
-    padding: 8px 1rem;
+    padding: 8px 10px 8px 1.7rem;
     font-size: 13px;
     border-radius: 2rem;
     border: 1px solid #ffffff1f;
@@ -459,6 +471,10 @@ main {
 }
 
 @media (max-width:900px) {
+    .searchCont {
+        justify-content: center;
+    }
+
     #searchInput {
         width: 45vw;
     }
@@ -466,7 +482,7 @@ main {
 
 @media (max-width:500px) {
     #searchInput {
-        width: 90vw;
+        width: 85vw;
     }
 }
 
@@ -483,9 +499,9 @@ main {
 
 .main-blog {
     width: 45%;
-    height: 55vh;
-    box-shadow: 0px 0px 2px rgba(147, 146, 146, 0.2);
-    border: 1px solid #00968742;
+    height: 50vh;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.4);
+    border: 1px solid #00968718;
     padding: 1rem;
     position: relative;
     overflow: hidden;
@@ -519,11 +535,10 @@ main {
 
 .main-blog .blog-description {
     position: absolute;
-    /* Trting to See if this is working */
     bottom: -10px;
     left: 0;
     transform: translateY(150%);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(8px);
     background: Linear-gradient(145deg, rgba(15, 77, 77, 0.861), rgba(42, 8, 74, 0.747));
     padding: 1rem 1rem 3rem 1rem;
     width: 100%;
@@ -712,8 +727,8 @@ main {
     width: 80%;
     height: 0;
     margin: 1rem 0;
-    border: none; 
-    border-top: 1px solid rgba(0, 150, 135, 0.53); 
+    border: none;
+    border-top: 1px solid rgba(0, 150, 135, 0.53);
     opacity: 0.3;
 }
 
@@ -850,8 +865,8 @@ main {
     width: 100%;
     height: 0;
     margin: 1rem 0;
-    border: none; 
-    border-top: 1px solid rgba(0, 150, 135, 0.53); 
+    border: none;
+    border-top: 1px solid rgba(0, 150, 135, 0.53);
     opacity: 0.3;
 }
 
@@ -1002,7 +1017,8 @@ main {
     .reviewCont form {
         padding: 2.5rem 1rem;
     }
-    .userFeedbacks .feedback{
+
+    .userFeedbacks .feedback {
         width: 300px;
     }
 }
@@ -1030,8 +1046,8 @@ footer hr {
     width: 80%;
     height: 0;
     margin: 1rem 0;
-    border: none; 
-    border-top: 1px solid rgba(0, 150, 135, 0.53); 
+    border: none;
+    border-top: 1px solid rgba(0, 150, 135, 0.53);
     opacity: 0.3;
 }
 
@@ -1844,4 +1860,158 @@ textarea {
 
 #closeContact:hover {
     background: #16b0a16f;
+}
+
+
+/* Messages */
+
+.messageCont {
+    margin: 3rem 0;
+    min-height: 100vh;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ffffff1d;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border-radius: 1.5rem;
+    padding: 2rem 0;
+}
+
+.messageCont h1 {
+    width: 40%;
+    text-align: center;
+    color: #009688;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #0096878c;
+    padding-bottom: 1rem;
+}
+
+.messages {
+    width: 100%;
+    margin-top: 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.messages .message {
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    color: #fff;
+    width: 40%;
+    gap: 2rem;
+    position: relative;
+    min-height: 150px;
+    border: 1px solid #ffffff13;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+    overflow: hidden;
+}
+
+.message:hover {
+    transform: scale(1.05);
+    border: 1px solid #0096875c;
+}
+
+.message #contactMsg {
+    font-size: 0.9rem;
+}
+
+.message .nameEmail {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #009688;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    justify-content: space-between;
+}
+
+
+.nameEmail h3 {
+    color: #009688;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.nameEmail p {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    opacity: 0.5;
+}
+
+.nameEmail .fa-regular {
+    font-size: 0.8rem;
+}
+
+.message .deleteReply {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    padding: 5px;
+    border: 1px solid #ffffff16;
+    backdrop-filter: blur(15px);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    justify-content: space-around;
+}
+
+.deleteReply span {
+    font-size: 12px;
+    color: #00968788;
+}
+
+.deleteReply a,
+#delConMsg {
+    cursor: pointer;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.3;
+    transition: 0.3s ease-in;
+}
+
+.deleteReply a:hover,
+#delConMsg:hover {
+    transform: scale(1.2);
+    opacity: 1;
+    color: #009688;
+}
+
+@media (max-width:900px) {
+    .messageCont {
+        width: 90%;
+    }
+
+    .messageCont h1 {
+        width: 60%;
+    }
+
+    .messageCont .messages {
+        padding: 1rem;
+    }
+
+    .messages .message {
+        width: 300px;
+    }
+}
+
+@media (max-width:500px) {
+    .messageCont {
+        width: 90%;
+    }
+
+    .messageCont h1 {
+        width: 80%;
+        font-size: 1.5rem;
+    }
+
+    .messageCont .messages {
+        margin-top: 1rem;
+        gap: 2rem;
+    }
 }

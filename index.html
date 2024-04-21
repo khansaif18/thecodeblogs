@@ -26,6 +26,7 @@
 </head>
 
 <body>
+    <!-- Navbar -->
 
     <header>
         <div class="logo">
@@ -54,6 +55,9 @@
     <i class="fa-solid fa-user" id="user"></i>
 
     <main>
+
+        <!-- Landing Page -->
+
         <div class="about">
             <h1>The Code Blogs</h1>
             <h3>Latest in <span id="element"></span> </h3>
@@ -67,13 +71,17 @@
             <i class="fa-solid fa-chevron-down"></i>
         </div>
 
+        <!-- Blogs Section on Home Page -->
 
         <div class="main-blogs" id="mainBlogs">
             <h1>Latest Blogs</h1>
             <hr>
 
             <div class="searchCont " id="searchCont">
-                <input type="text" id="searchInput" placeholder="Enter Blog's Title / Author to Search">
+                <div class="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="search" id="searchInput" placeholder="Enter Blog's Title / Author to Search">
+                </div>
                 <i class="fa-solid fa-xmark" id="clearInput"></i>
             </div>
 
@@ -88,6 +96,8 @@
 
         </div>
     </main>
+
+    <!-- Footer -->
 
     <footer>
         <hr>
@@ -104,9 +114,11 @@
         </div>
     </footer>
 
+    <!-- Admin Dashboard Section -->
 
     <section id="adminDashboard" class="admin-dashboard hide-admin-dashboard">
 
+        <!-- Admin Login Form -->
 
         <form class="login" id="login">
             <h2>Log In as Admin</h2>
@@ -124,6 +136,8 @@
             <button>Log In</button>
             <i class="fa-solid fa-xmark" id="closeLogin"></i>
         </form>
+
+        <!-- Dashboard -->
 
         <div class="dashboard hide-dashboard" id="dashboard">
 
@@ -143,6 +157,8 @@
             </div>
             <hr>
 
+            <!-- New Blog Form on Admin Dashboard -->
+            <!-- Same Form will be Used for Update Blog -->
 
             <form class="hideBlogForm" id="postBlogForm">
                 <h2 id="formh2">Post a New Blog</h2>
@@ -156,7 +172,7 @@
                 <label for="author">Enter Author Name*</label>
                 <input type="text" placeholder="Author" id="author" autocomplete="off">
 
-                <label for="image" id="imageLabel">Select an Image*</label>
+                <label for="image" id="imageLabel"><i class="fa-solid fa-paperclip"></i> Select an Image*</label>
                 <input type="file" id="image" accept="image/*">
 
                 <span id="imagePreview"></span>
@@ -178,6 +194,8 @@
                 </div>
             </div>
 
+            <!-- Blog Deleteing Confirmation Card on Admin Dashboard -->
+
             <div class="delAlertContainer" id="deleteAlert">
                 <div class="deleteAlert">
                     <h3>Are You Sure You Want To Delete?</h3>
@@ -189,8 +207,22 @@
                 </div>
             </div>
 
+            <!-- Messages on Admin Dashboard From Contact Form -->
+
+            <div class="messageCont">
+                <h1>Messages from Contact Form</h1>
+                <hr>
+                <div class="messages" id="messages">
+
+                    <!-- Messages from Database -->
+                    
+                </div>
+            </div>
+
         </div>
     </section>
+
+    <!-- Contact Form On Home Page -->
 
     <div class="contactDiv hidecontactDiv" id="contactDiv">
         <form class="conForm" id="conForm">
@@ -200,13 +232,13 @@
             <h2>Contact Us</h2>
 
             <label for="conName">Enter Your Name </label>
-            <input type="text" id="conName" placeholder="Name Here.." />
+            <input type="text" id="conName" placeholder="Name Here.." autocomplete="off"/>
 
             <label for="conEmail">Enter Your Email </label>
-            <input type="email" id="conEmail" placeholder="Email Here.." />
+            <input type="email" id="conEmail" placeholder="Email Here.." autocomplete="off"/>
 
             <label for="conMessage">Enter Your Message </label>
-            <input id="conMessage" placeholder="Message Here.." />
+            <input id="conMessage" placeholder="Message Here.." autocomplete="off"/>
 
             <button>Send Message</button>
 
