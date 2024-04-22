@@ -64,7 +64,7 @@
             <div class="newsletter">
                 <p>Subscribe to Our newsletter to Stay Updated</p>
                 <form class="newsletter-form" id="newsForm">
-                    <input type="email" placeholder="Enter Email Address" id="newsEmail">
+                    <input type="email" placeholder="Enter Email Address" id="newsEmail" autocomplete="off">
                     <button> <i class="fa-solid fa-arrow-right"></i> </button>
                 </form>
             </div>
@@ -163,14 +163,17 @@
             <form class="hideBlogForm" id="postBlogForm">
                 <h2 id="formh2">Post a New Blog</h2>
                 <hr>
-                <label for="title">Enter Blog Title*</label>
+                <label for="title"><i class="fa-solid fa-pencil"></i> Enter Blog Title*</label>
                 <input type="text" placeholder="Title" id="title" autocomplete="off">
 
-                <label for="content">Enter Blog Content*</label>
+                <label for="content"><i class="fa-solid fa-font"></i> Enter Blog Content*</label>
                 <textarea id="content" cols="30" rows="5" placeholder="Content"></textarea>
 
-                <label for="author">Enter Author Name*</label>
+                <label for="author"><i class="fa-solid fa-at"></i> Enter Author Name*</label>
                 <input type="text" placeholder="Author" id="author" autocomplete="off">
+
+                <label for="author"><i class="fa-solid fa-link"></i> Enter Original Blog Link*</label>
+                <input type="text" placeholder="Link" id="blogLink" autocomplete="off">
 
                 <label for="image" id="imageLabel"><i class="fa-solid fa-paperclip"></i> Select an Image*</label>
                 <input type="file" id="image" accept="image/*">
@@ -188,7 +191,7 @@
             <button id="showBlogs">Blogs <i class="fa-solid fa-angle-down" id="arrowBlogs"></i></button>
             <div class="my-blogs-cont hideAdminBlogs" id="myBlogsCont">
 
-                    <h2 class="mainh2">Manage Blogs</h2>
+                <h2 class="mainh2">Manage Blogs</h2>
 
                 <div class="loader hideAdminLoader" id="adminLoader"></div>
 

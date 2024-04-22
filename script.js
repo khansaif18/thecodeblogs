@@ -65,32 +65,36 @@ async function GetMessages() {
                </div>
             </div>
                `
+            window.DeleteContactMessage = async (key) => {
+                await remove(ref(db, `contactDetails/${key}`))
+                    .then(() => {
+                        GetMessages()
+                        DisplayMessage('Message Deleted')
+                    })
+            }
+
         }
         messageCont.innerHTML = container
+        const showMessages = document.getElementById('showMessages')
+        const messageContt = document.getElementById('messageCont')
+        const arrow = document.getElementById('arrow')
+        showMessages.addEventListener('click', () => {
+            if (messageContt.className.includes('hideMessageCont')) {
+                messageContt.classList.remove('hideMessageCont')
+                arrow.style.rotate = '-180deg'
+            }
+            else {
+                messageContt.classList.add('hideMessageCont')
+                arrow.style.rotate = '0deg'
+            }
+        }).catch((error) => {
+            DisplayMessage(error.message)
+        })
     })
-    window.DeleteContactMessage = async (key) => {
-        await remove(ref(db, `contactDetails/${key}`))
-            .then(() => {
-                GetMessages()
-                DisplayMessage('Message Deleted')
-            })
-    }
 
-    const showMessages = document.getElementById('showMessages')
-    const messageCont = document.getElementById('messageCont')
-    const arrow = document.getElementById('arrow')
-    showMessages.addEventListener('click', () => {
-        if (messageCont.className.includes('hideMessageCont')) {
-            messageCont.classList.remove('hideMessageCont')
-            arrow.style.rotate = '-180deg'
-        }
-        else {
-            messageCont.classList.add('hideMessageCont')
-            arrow.style.rotate = '0deg'
-        }
-    })
 }
 GetMessages()
+
 
 // Function to Show and Hide Login Form and Dashboard
 
@@ -192,7 +196,8 @@ function PostNewBlog() {
     const title = document.getElementById('title').value;
     const content = document.getElementById('content').value;
     const author = document.getElementById('author').value;
-    // const imageurl = document.getElementById('imageurl').value;
+    const link = document.getElementById('blogLink').value;
+
     const id = Math.floor(Math.random() * 100000);
     const date = new Date();
 
@@ -226,8 +231,8 @@ function PostNewBlog() {
                     date: currentDate,
                     time: currentTime,
                     author: author,
+                    link: link,
                     src: downloadUrl,
-                    // imageSrc: imageurl
                 }).then(() => {
                     GetPostData();
                     ToggleBlogForm();
@@ -235,6 +240,7 @@ function PostNewBlog() {
                     document.getElementById('title').value = "";
                     document.getElementById('content').value = "";
                     document.getElementById('image').value = "";
+                    document.getElementById('blogLink').value = "";
                 }).catch((error) => {
                     console.error('Error posting blog:', error);
                     DisplayMessage('Error posting blog. Please try again.');
@@ -257,6 +263,7 @@ function PostNewBlog() {
                 content: content,
                 date: currentDate,
                 time: currentTime,
+                link: link,
                 author: author,
             }).then(() => {
                 GetPostData();
@@ -265,6 +272,7 @@ function PostNewBlog() {
                 document.getElementById('title').value = "";
                 document.getElementById('content').value = "";
                 document.getElementById('image').value = "";
+                document.getElementById('blogLink').value = "";
             }).catch((error) => {
                 console.error('Error posting blog:', error);
                 DisplayMessage('Error posting blog. Please try again.');
@@ -396,6 +404,7 @@ window.UpdateBlog = async function (key) {
         document.getElementById('title').value = blog.title;
         document.getElementById('content').value = blog.content;
         document.getElementById('author').value = blog.author;
+        document.getElementById('blogLink').value = blog.link;
         // document.getElementById('imageurl').value = blog.src;
         src = blog.src
     });
@@ -410,6 +419,7 @@ window.UpdateBlog = async function (key) {
         const title = document.getElementById('title').value;
         const content = document.getElementById('content').value;
         const author = document.getElementById('author').value;
+        const link = document.getElementById('blogLink').value;
 
         // const imageUrl = document.getElementById('imageurl').value;
         const dateAndTime = new Date();
@@ -444,8 +454,8 @@ window.UpdateBlog = async function (key) {
                         date: currentDate,
                         time: currentTime,
                         src: downloadUrl,
-                        author: author
-                        // imageSrc: imageUrl
+                        author: author,
+                        link: link
                     });
                     GetPostData();
                     ToggleBlogForm();
@@ -453,6 +463,7 @@ window.UpdateBlog = async function (key) {
                     document.getElementById('title').value = "";
                     document.getElementById('content').value = "";
                     document.getElementById('image').value = "";
+                    document.getElementById('blogLink').value = "";
                     // document.getElementById('imageurl').value = "";
                 }
             }).catch((error) => {
@@ -471,9 +482,8 @@ window.UpdateBlog = async function (key) {
                     content: content,
                     date: currentDate,
                     time: currentTime,
-                    author: author
-                    // src: src,
-                    // imageSrc: imageUrl
+                    author: author,
+                    link: link
                 });
                 console.log('outside', src);
                 GetPostData();
@@ -482,7 +492,7 @@ window.UpdateBlog = async function (key) {
                 document.getElementById('title').value = "";
                 document.getElementById('content').value = "";
                 document.getElementById('image').value = "";
-                // document.getElementById('imageurl').value = "";
+                document.getElementById('blogLink').value = "";
             }
         }
 
@@ -672,7 +682,7 @@ function DisplayMessage(message) {
     })
     setTimeout(() => {
         body.removeChild(div)
-    }, 3500)
+    }, 2500)
 }
 
 // Function to Close Login Form

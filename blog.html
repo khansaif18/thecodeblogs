@@ -57,6 +57,9 @@
         </div>
 
         <p class="singleContent" id="singleContent"></p>
+
+        <a href="" target="_blank" id="originalLink"></a>
+
     </div>
 
     <hr id="midHR">
@@ -171,15 +174,17 @@
                         document.getElementById('author').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Author - <span>${blogData.author}</span> `
                         document.getElementById('date').innerHTML = `<i class="fa-solid fa-calendar-days"></i> Last Updated -  <span>${blogData.date} | ${blogData.time}</span> `
                         document.getElementById('singleContent').textContent = blogData.content
+                        document.getElementById('originalLink').innerHTML = `Visit Original Blog <i class="fa-regular fa-circle-right"></i>`
+                        document.getElementById('originalLink').href = blogData.link
 
-                        document.title = "The Code Blogs - " + blogData.title
+                        document.title = "The Code Blogs | " + blogData.title
                     }
                 })
             HideLoader()
         }
 
         window.addEventListener('load', () => {
-            SingleBlogData()
+            SingleBlogData().then(() => document.getElementById('originalLink').style.visibility = 'visible')
             GetUserReviews()
         })
 
