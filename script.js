@@ -88,7 +88,6 @@ async function GetMessages() {
             messageCont.classList.add('hideMessageCont')
             arrow.style.rotate = '0deg'
         }
-        // GetMessages()
     })
 }
 GetMessages()

@@ -1508,6 +1508,7 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     position: relative;
     transition: 0.3s ease-in;
 }
@@ -1516,24 +1517,21 @@ textarea {
     display: none;
 }
 
+.my-blogs-cont .mainh2{
+    color: #009688;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #009688;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-top: 1rem;
+    width: 40%;
+}
+
 
 #loaderAdmin {
     position: absolute;
     margin-top: -3rem;
 }
-
-/* .my-blogs-cont h1 {
-    position: absolute;
-    top: 0;
-    color: #009688;
-    font-size: 2rem;
-    width: 50%;
-    text-align: center;
-    letter-spacing: 1px;
-    margin-top: 1rem;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #009687d2;
-} */
 
 .my-blogs {
     display: flex;
@@ -1712,6 +1710,10 @@ textarea {
     .delAlertContainer {
         width: 80%;
     }
+
+    .my-blogs-cont .mainh2{
+        width: 70%;
+    }
 }
 
 @media (max-width:500px) {
@@ -1730,6 +1732,10 @@ textarea {
 
     .delAlertContainer h3 {
         font-size: 1rem;
+    }
+
+    .my-blogs-cont .mainh2{
+        width: 80%;
     }
 }
 
@@ -1971,6 +1977,7 @@ textarea {
     align-items: center;
     width: 80%;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ffffff19;
     border-radius: 1.5rem;
     padding: 2rem 0;
     transition: 0.3s ease-in;

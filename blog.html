@@ -81,7 +81,7 @@
                 <i class="fa-solid fa-xmark" id="closeReviewForm"></i>
                 <input type="text" placeholder="Your Name" autocomplete="off" id="reviewName">
                 <input type="text" placeholder="Review / Feedback" id="reviewMsg" autocomplete="off">
-                <button>Add Feedback</button>
+                <button>Post</button>
             </form>
         </div>
 
@@ -111,13 +111,13 @@
             <h2>Contact Us</h2>
 
             <label for="conName">Enter Your Name </label>
-            <input type="text" id="conName" placeholder="Name Here.." />
+            <input type="text" id="conName" placeholder="Name Here.." autocomplete="off" />
 
             <label for="conEmail">Enter Your Email </label>
-            <input type="email" id="conEmail" placeholder="Email Here.." />
+            <input type="email" id="conEmail" placeholder="Email Here.." autocomplete="off" />
 
             <label for="conMessage">Enter Your Message </label>
-            <input id="conMessage" placeholder="Message Here.." />
+            <input id="conMessage" placeholder="Message Here.." autocomplete="off" />
 
             <button>Send Message</button>
 
@@ -281,6 +281,21 @@
             const message = document.getElementById('conMessage').value
             const id = Math.floor(Math.random() * 30000)
 
+            const date = new Date();
+
+            let day = date.getDate();
+            if (day < 10) day = '0' + day;
+            let month = date.getMonth() + 1;
+            if (month < 10) month = '0' + month;
+
+            let hour = date.getHours();
+            if (hour < 10) hour = '0' + hour;
+            let minute = date.getMinutes();
+            if (minute < 10) minute = '0' + minute;
+
+            const messageDate = `${day}/${month}/${date.getFullYear()}`;
+            const messageTime = `${hour}:${minute}`;
+
             if (name === '' || email === '' || message === '') {
                 DisplayMessage('Fill The Required Fields')
             }
@@ -288,7 +303,9 @@
                 set(ref(db, 'contactDetails/' + id), {
                     name: name,
                     email: email,
-                    message: message
+                    message: message,
+                    date: messageDate,
+                    time: messageTime
                 }).then(() => {
                     DisplayMessage('Thanks, We Will Get in Touch Soon')
                 }).catch((error) => {
