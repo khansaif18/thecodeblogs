@@ -885,3 +885,27 @@ conForm.addEventListener('submit', (e) => {
 })
 
 
+const impInst = document.getElementById('impInst')
+const instructions = document.getElementById('instructions')
+const rotateImpInst = document.getElementById('rotateImpInst')
+
+impInst.addEventListener('click', () => {
+    instructions.classList.toggle('hideInstructions')
+    rotateImpInst.classList.toggle('rotateImpInst')
+})
+
+const brCopy = document.getElementById('br')
+const hrCopy = document.getElementById('hr')
+const h3Copy = document.getElementById('h3')
+
+brCopy.addEventListener('click', () => {
+    navigator.clipboard.writeText('<br>').then(() => DisplayMessage('<br> Copied'))
+})
+
+hrCopy.addEventListener('click', () => {
+    navigator.clipboard.writeText('<hr>').then(() => DisplayMessage('<hr> Copied'))
+})
+
+h3Copy.addEventListener('click', () => {
+    navigator.clipboard.writeText('<h3>  </h3>').then(() => DisplayMessage('<h3> </h3> Copied'))
+})
