@@ -1435,7 +1435,6 @@ textarea {
 
 #imageLabel {
     padding: 10px 5px;
-    /* opacity: 0.5 !important; */
     color: #ffffffb0;
     cursor: pointer;
     background: transparent;
@@ -1534,10 +1533,6 @@ textarea {
     border: 1px solid #00968757;
     color: #009687d2;
     opacity: 1;
-}
-
-#arrowBlogs {
-    transition: 0.3s ease-in;
 }
 
 .my-blogs-cont {
@@ -1815,10 +1810,10 @@ textarea {
 .alert span{
     position: absolute;
     bottom: 0px;
-    background-color: #cccccc69;
+    background-color: #009687b6;
     height: 1px;
-    border-radius: 2rem;
-    width: 100%;
+    border-radius: 3rem;
+    /* width: 100%; */
     animation: shrink 2.5s ease-in;
 }
 
@@ -2023,9 +2018,6 @@ textarea {
     opacity: 1;
 }
 
-#arrow {
-    transition: 0.3s ease-in;
-}
 
 .messageCont {
     margin: 2rem 0;
@@ -2078,7 +2070,6 @@ textarea {
 }
 
 .message:hover {
-    /* transform: scale(1.05); */
     border: 1px solid #0096875c;
 }
 
@@ -2188,7 +2179,7 @@ textarea {
 
 
 #impInst {
-    background-color: rgba(255, 0, 0, 0.635);
+    background-color: #009687b0;
     padding: 5px 1rem;
     cursor: pointer;
 }
@@ -2230,8 +2221,7 @@ textarea {
 
 .instructions li i {
     cursor: pointer;
-    color: #009687ae;
-    font-size: 1.2rem;
+    color: #0096878d;
 }
 
 .instructions li i:hover {

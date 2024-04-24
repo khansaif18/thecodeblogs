@@ -684,7 +684,7 @@ function DisplayMessage(message) {
     })
     setTimeout(() => {
         body.removeChild(div)
-    }, 2490)
+    }, 2500)
 }
 
 // Function to Close Login Form
