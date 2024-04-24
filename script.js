@@ -674,15 +674,17 @@ function DisplayMessage(message) {
     btn.classList.add('fa-solid', 'fa-x')
     let h5 = document.createElement('h5')
     h5.innerText = message
+    let span = document.createElement('span')
     body.append(div)
     div.append(h5)
     div.append(btn)
+    div.append(span)
     btn.addEventListener('click', () => {
         body.removeChild(div)
     })
     setTimeout(() => {
         body.removeChild(div)
-    }, 2500)
+    }, 2490)
 }
 
 // Function to Close Login Form

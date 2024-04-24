@@ -1792,7 +1792,7 @@ textarea {
     padding: 10px;
     cursor: default;
     background-image: linear-gradient(to right top, #000000ac, #000000d4);
-    /* box-shadow: 0px 0px 1px #ccc; */
+    overflow: hidden;
     border: 1px solid #cccccc24;
     color: #fff;
     backdrop-filter: blur(30px);
@@ -1811,6 +1811,24 @@ textarea {
     background: transparent;
     color: #fff;
     cursor: pointer;
+}
+.alert span{
+    position: absolute;
+    bottom: 0px;
+    background-color: #cccccc69;
+    height: 1px;
+    border-radius: 2rem;
+    width: 100%;
+    animation: shrink 2.5s ease-in;
+}
+
+@keyframes shrink{
+    0%{
+        width: 100%;
+    }
+    100%{
+        width: 0;
+    }
 }
 
 /* Loader */
