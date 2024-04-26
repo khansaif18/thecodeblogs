@@ -574,19 +574,25 @@ main {
     color: #ffffffdc;
     cursor: pointer;
     text-decoration: none;
-    padding: 5px 1rem;
-    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+    padding: 4px 1rem;
+    border: 1px solid #ffffff60;
     position: absolute;
     margin-top: 5px;
     backdrop-filter: blur(30px);
     border-radius: 2rem;
     letter-spacing: 1px;
+    transition: 0.3s ease-in;
+}
+
+.main-blog .blog-description a:hover {
+    color: #009688;
+    border: 1px solid #009688;
 }
 
 .main-blog .blog-description a:hover i {
     color: #009688;
     opacity: 2;
-    transform: translateX(4px);
+    transform: translateX(3px);
 }
 
 .main-blog .blog-description a i {
@@ -2025,8 +2031,7 @@ textarea {
     flex-direction: column;
     align-items: center;
     width: 80%;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
-    border: 1px solid #ffffff19;
+
     border-radius: 1.5rem;
     padding: 2rem 0;
     transition: 0.3s ease-in;
@@ -2037,7 +2042,7 @@ textarea {
 }
 
 .messageCont h1 {
-    width: 60%;
+    width: 50%;
     text-align: center;
     color: #009688;
     letter-spacing: 1px;

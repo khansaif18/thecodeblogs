@@ -534,7 +534,7 @@ async function GetBlogtData() {
                   <div class="blog-description">
                     <span id="date-author">By ${author} on ${date} </span>
                     <p>${content}</p>
-                    <a  id="readBlogBtn" onclick="GetBlogId(${key})" class="readBlogBtn">Read Blog <i class="fa-solid fa-caret-right"></i></a>
+                    <a  id="readBlogBtn" onclick="GetBlogId(${key})" class="readBlogBtn">Read More <i class="fa-solid fa-caret-right"></i></a>
                   </div>
             </div>
                `
