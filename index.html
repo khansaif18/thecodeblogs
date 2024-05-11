@@ -61,7 +61,7 @@
         <div class="about">
             <h1>The Code Blogs</h1>
             <h3>Latest in <span id="element"></span> </h3>
-            <div class="newsletter">
+            <div class="newsletter-from-cont">
                 <p>Subscribe to Our newsletter to Stay Updated</p>
                 <form class="newsletter-form" id="newsForm">
                     <input type="email" placeholder="Enter Email Address" id="newsEmail" autocomplete="off">
@@ -172,9 +172,10 @@
                     <p>Use the Following Tags Accordingly</p>
                     <li>For New Line - <span> &lt;br&gt; </span> <i class="fa-regular fa-copy" id="br"></i> </li>
                     <li>For Horizontal Line - <span> &lt;hr&gt; </span> <i class="fa-regular fa-copy" id="hr"></i> </li>
-                    <li>For Header Tag - <span> &lt;h3&gt;  &lt;/h3&gt; </span> <i
-                            class="fa-regular fa-copy" id="h3"></i> </li>
-                    <p>*Can Also Use Other HTML Tags </p>
+                    <li>For Adding Points - <span> &lt;li&gt; &lt;/li&gt;</span> <i class="fa-regular fa-copy" id="li"></i> </li>
+                    <li>For Header Tag - <span> &lt;h2&gt; &lt;/h2&gt; </span> <i class="fa-regular fa-copy"
+                            id="h3"></i> </li>
+                    <p>*Can Also Use Other HTML Tags such as <code>h1, h3, h4 etc.</code> </p>
                 </div>
 
                 <label for="content"><i class="fa-solid fa-font"></i> Enter Blog Content*</label>
@@ -241,6 +242,20 @@
                 </div>
             </div>
 
+            <div class="messageContainer">
+                <button id="newsletterBtn">Newsletter <i class="fa-solid fa-angle-down" id="arrowNews"></i></button>
+                <div class="newsletterCont hidenewsletterCont" id="newsletterCont">
+                     <i class="fa-brand fa-email"></i>
+                    <h1>Email IDs from Newsletter Form <span id="count"></span> <i class="fa-regular fa-copy" id="copyAllEmails"></i></h1>
+                    <hr>
+                    <div class="newsletter" id="newsletter">
+
+                        <!-- Messages from Database -->
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -268,6 +283,7 @@
     </div>
 
     <script type="module" src="script.js"></script>
+    <!-- firebase pass - admintcb -->
 </body>
 
 </html>

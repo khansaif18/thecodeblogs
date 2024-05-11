@@ -754,7 +754,7 @@ newsForm.addEventListener('submit', (e) => {
     e.preventDefault()
     const id = Math.floor(Math.random() * 30000)
     if (newsEmail.value !== '') {
-        set(ref(db, 'userEmail/' + id), {
+        set(ref(db, 'newsletter/' + id), {
             email: newsEmail.value
         }).then(() => {
             DisplayMessage('Thank You For Subscribing')
@@ -899,6 +899,7 @@ impInst.addEventListener('click', () => {
 const brCopy = document.getElementById('br')
 const hrCopy = document.getElementById('hr')
 const h3Copy = document.getElementById('h3')
+const liCopy = document.getElementById('li')
 
 brCopy.addEventListener('click', () => {
     navigator.clipboard.writeText('<br>').then(() => DisplayMessage('<br> Copied'))
@@ -909,5 +910,71 @@ hrCopy.addEventListener('click', () => {
 })
 
 h3Copy.addEventListener('click', () => {
-    navigator.clipboard.writeText('<h3>  </h3>').then(() => DisplayMessage('<h3> </h3> Copied'))
+    navigator.clipboard.writeText('<h2>  </h2>').then(() => DisplayMessage('<h2> </h2> Copied'))
 })
+
+liCopy.addEventListener('click', () => {
+    navigator.clipboard.writeText('<li>  </li>').then(() => DisplayMessage('<li> </li> Copied'))
+})
+
+
+// Newsletter Manage ka System
+
+const newsletterBtn = document.getElementById('newsletterBtn')
+const newsletterCont = document.getElementById('newsletterCont')
+
+newsletterBtn.addEventListener('click', () => {
+    const arrowBlogs = document.getElementById('arrowNews')
+    if (newsletterCont.className.includes('hidenewsletterCont')) {
+        newsletterCont.classList.remove('hidenewsletterCont')
+        arrowBlogs.style.rotate = '-180deg'
+    }
+    else {
+        newsletterCont.classList.add('hidenewsletterCont')
+        arrowBlogs.style.rotate = '0deg'
+    }
+})
+
+let countVal = document.getElementById('count')
+
+
+async function GetNewsletterEmails() {
+    await get(ref(db, `newsletter/`)).then((snapshot) => {
+
+        const emails = snapshot.val()
+
+        let container = "";
+
+        const newsletter = document.getElementById('newsletter')
+        let count = 0
+        let allEmails = ""
+
+        for (const key in emails) {
+            let { email } = emails[key]
+
+            container += `<li> ${email} <i class="fa-regular fa-copy" onclick="CopyEmail(${key})"></i></li> `
+
+            count++
+            allEmails += email + " "
+
+            window.CopyEmail = async (key) => {
+                await get(ref(db, `newsletter/${key}`)).then((snapshot) => {
+                    const email = snapshot.val();
+                    navigator.clipboard.writeText(email.email).then(() => DisplayMessage('Email Copied to Clipboard'))
+                });
+            }
+
+            const copyAllEmails = document.getElementById('copyAllEmails')
+            copyAllEmails.addEventListener('click', () => {
+                navigator.clipboard.writeText(allEmails).then(() => DisplayMessage('Copied All Emails to Clipboard'))
+            })
+            countVal.textContent = `(${count})`
+
+        }
+        newsletter.innerHTML = container
+    })
+}
+GetNewsletterEmails()
+
+
+
