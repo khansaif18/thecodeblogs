@@ -171,8 +171,8 @@
                         const blogData = snapshot.val();
                         document.getElementById('title').textContent = blogData.title
                         document.querySelector('img').src = blogData.src
-                        document.getElementById('author').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Author - <span>${blogData.author}</span> `
-                        document.getElementById('date').innerHTML = `<i class="fa-solid fa-calendar-days"></i> Last Updated -  <span>${blogData.date} | ${blogData.time}</span> `
+                        document.getElementById('author').innerHTML = `Author - <span>${blogData.author}</span> `
+                        document.getElementById('date').innerHTML = `Last Updated -  <span>${blogData.date} | ${blogData.time}</span> `
                         document.getElementById('singleContent').innerHTML = blogData.content
                         document.getElementById('originalLink').innerHTML = `Visit Original Blog <i class="fa-regular fa-circle-right"></i>`
                         document.getElementById('originalLink').href = blogData.link
