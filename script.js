@@ -6,13 +6,13 @@ import { getDatabase, set, ref, get, remove, update } from "https://www.gstatic.
 import { getStorage, ref as imgRef, uploadBytesResumable, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.6.0/firebase-storage.js";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAl4gLv8Jtc3ZiIq_k70lJZXxeggXKra0M",
-    authDomain: "basicblog-5b58c.firebaseapp.com",
-    databaseURL: "https://basicblog-5b58c-default-rtdb.firebaseio.com",
-    projectId: "basicblog-5b58c",
-    storageBucket: "basicblog-5b58c.appspot.com",
-    messagingSenderId: "242631385678",
-    appId: "1:242631385678:web:7de237fad09f68fe66d91f"
+    apiKey: "",
+    authDomain: "",
+    databaseURL: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: ""
 }
 
 // Initialize Firebase
